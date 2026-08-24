@@ -1,0 +1,13 @@
+{
+  "type": "weekly_workflow",
+  "week_start": "2026-08-24",
+  "days": {
+    "monday": [
+      {
+        "task": "Mix template setup",
+        "description": "Slow start to the day. Built a detailed mix template for sync licensing, including routing, buses, gain staging, vocal chain placeholders, FX returns, and cue-ready automation lanes.",
+        "status": "completed"
+      }
+    ]
+  }
+}
