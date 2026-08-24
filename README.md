@@ -1,5 +1,5 @@
 {
-  "week_plan": {
+  "mmonthly_plan": {
     "monday": {
       "goal": "Set up Custom GPT and repo structure",
       "tasks": [
