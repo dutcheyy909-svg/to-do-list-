@@ -1,0 +1,69 @@
+{
+  "sync_schedule": {
+    "monday": {
+      "10:00": [
+        "Create 1 sync cue",
+        "Export stems (drums, bass, melody, FX)",
+        "Export alt mixes (no drums, no bass, no melody, underscore)",
+        "Export cutdowns (60s, 30s, 15s)"
+      ],
+      "16:00": [
+        "Write metadata (title, BPM, key, moods)",
+        "Write short and long descriptions",
+        "Prep files for upload"
+      ]
+    },
+    "tuesday": {
+      "10:00": [
+        "Create 1 sync cue",
+        "Export stems",
+        "Export alt mixes",
+        "Export cutdowns"
+      ],
+      "16:00": [
+        "Upload cue to AudioSparx",
+        "Upload cue to Songtradr",
+        "Add tags and descriptions"
+      ]
+    },
+    "wednesday": {
+      "10:00": [
+        "Create 1 sync cue",
+        "Export stems",
+        "Export alt mixes",
+        "Export cutdowns"
+      ],
+      "16:00": [
+        "Upload cue to Gumroad/Payhip",
+        "Update thumbnails and product pages",
+        "DM 20 creators"
+      ]
+    },
+    "thursday": {
+      "10:00": [
+        "Create 1 sync cue",
+        "Export stems",
+        "Export alt mixes",
+        "Export cutdowns"
+      ],
+      "16:00": [
+        "Release cue on Spotify",
+        "Submit cue to playlists",
+        "Post cue on Instagram Reels"
+      ]
+    },
+    "friday": {
+      "10:00": [
+        "Create 1 sync cue",
+        "Export stems",
+        "Export alt mixes",
+        "Export cutdowns"
+      ],
+      "16:00": [
+        "Add cue to Gumroad/Payhip bundles",
+        "Post new bundle drop",
+        "Share cue on YouTube Shorts"
+      ]
+    }
+  }
+}
