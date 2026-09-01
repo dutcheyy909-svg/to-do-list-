@@ -1,0 +1,77 @@
+name: Daily Sync Licensing Workflow
+
+on:
+  schedule:
+    - cron: "0 10 * * 1-5"   # 10:00 AM Monday–Friday
+    - cron: "0 16 * * 1-5"   # 4:00 PM Monday–Friday
+  workflow_dispatch:
+
+jobs:
+  sync_tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine task set
+        id: taskset
+        run: |
+          HOUR=$(date +"%H")
+          DAY=$(date +"%u")
+
+          if [ "$DAY" -eq 1 ]; then
+            if [ "$HOUR" -eq 10 ]; then
+              echo "tasks=Create 1 sync cue; Export stems; Export alt mixes; Export cutdowns" >> $GITHUB_OUTPUT
+            else
+              echo "tasks=Write metadata; Write descriptions; Prep files for upload" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+          if [ "$DAY" -eq 2 ]; then
+            if [ "$HOUR" -eq 10 ]; then
+              echo "tasks=Create 1 sync cue; Export stems; Export alt mixes; Export cutdowns" >> $GITHUB_OUTPUT
+            else
+              echo "tasks=Upload cue to AudioSparx; Upload cue to Songtradr; Add tags and descriptions" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+          if [ "$DAY" -eq 3 ]; then
+            if [ "$HOUR" -eq 10 ]; then
+              echo "tasks=Create 1 sync cue; Export stems; Export alt mixes; Export cutdowns" >> $GITHUB_OUTPUT
+            else
+              echo "tasks=Upload cue to Gumroad/Payhip; Update thumbnails; DM 20 creators" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+          if [ "$DAY" -eq 4 ]; then
+            if [ "$HOUR" -eq 10 ]; then
+              echo "tasks=Create 1 sync cue; Export stems; Export alt mixes; Export cutdowns" >> $GITHUB_OUTPUT
+            else
+              echo "tasks=Release cue on Spotify; Submit cue to playlists; Post cue on Instagram Reels" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+          if [ "$DAY" -eq 5 ]; then
+            if [ "$HOUR" -eq 10 ]; then
+              echo "tasks=Create 1 sync cue; Export stems; Export alt mixes; Export cutdowns" >> $GITHUB_OUTPUT
+            else
+              echo "tasks=Add cue to Gumroad bundles; Post new bundle drop; Share cue on YouTube Shorts" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Create daily log file
+        run: |
+          DATE=$(date +"%Y-%m-%d_%H-%M")
+          mkdir -p sync_logs
+          echo "Daily Sync Tasks for $DATE" > sync_logs/$DATE.txt
+          echo "" >> sync_logs/$DATE.txt
+          echo "${{ steps.taskset.outputs.tasks }}" >> sync_logs/$DATE.txt
+
+      - name: Commit log file
+        run: |
+          git config user.name "dutcheyy-sync-bot"
+          git config user.email "sync-bot@users.noreply.github.com"
+          git add sync_logs/
+          git commit -m "Sync tasks logged for $(date +"%Y-%m-%d %H:%M")"
+          git push
